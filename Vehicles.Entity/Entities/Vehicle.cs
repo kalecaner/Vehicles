@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Vehicles.Entity
         public int MaxSpeed { get; set; }
         public int EnginePower { get; set; }
         public string NumberPlate { get; set; }
+        
         public virtual Color Color { get; set; }
 
     }

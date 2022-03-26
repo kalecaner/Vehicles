@@ -14,11 +14,10 @@ namespace Vehicles.Entity.EntityConfig
         public void Configure(EntityTypeBuilder<Color> builder)
         {
             builder.ToTable("Renkler");
-            builder.HasKey(a => a.Id);
+            builder.HasKey(x => x.Id);
+           
 
-            //builder.HasData(new Color { Id = 1, ColorType = "Beyaz" });
-            //builder.HasData(new Color { Id = 2, ColorType = "Mavi" });
-            //builder.HasData(new Color { Id = 3, ColorType = "Kırmızı" });
+           
 
 
         }

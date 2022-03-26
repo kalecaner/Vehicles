@@ -20,7 +20,8 @@ namespace Vehicles.BLL.Concrate
 
         public List<string> GetBoatbyColor(string color)
         {
-            return boatRepository.GetBoatbyColor(color);
+            
+            return boatRepository.GetBoatbyColor(color.ToLower().Trim());
         }
     }
 }

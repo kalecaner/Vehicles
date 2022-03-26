@@ -18,7 +18,7 @@ namespace Vehicles.BLL.Concrate
 
         public List<string> GetBusbyColor(string color)
         {
-            return busRepository.GetBusByColor(color);
+            return busRepository.GetBusByColor(color.ToLower().Trim());
         }
     }
 }

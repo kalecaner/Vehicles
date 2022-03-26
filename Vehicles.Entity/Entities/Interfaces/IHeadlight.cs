@@ -10,6 +10,7 @@ namespace Vehicles.Entity.Interfaces
     public interface IHeadlight
     {
         public string HeadlightType { get; set; }
-        public OnOff IsOn { get; set; } 
+
+        public OnOff IsOn { get; set; }
     }
 }

@@ -14,10 +14,10 @@ namespace Vehicles.Services.Concrate
         IColorRepository ColorRepository;
 
 
-        public BusRepository(VehiclesDbContext _VehiclesDb, IColorRepository ColorRepository )
+        public BusRepository(VehiclesDbContext _VehiclesDb, IColorRepository _ColorRepository )
         {
             DbContext = _VehiclesDb;
-            ColorRepository = ColorRepository;
+            ColorRepository = _ColorRepository;
             
         }
 
@@ -30,7 +30,16 @@ namespace Vehicles.Services.Concrate
         {
           
               int ColorId=ColorRepository.GetColorIdByColor(color);
+            if (ColorId > 0)
+            {
             return DbContext.Buses.Where(a=>a.Color.Id==ColorId).Select(a=>a.Brand).ToList();
+
+            }
+            else
+            {
+                return null;
+            }
+
 
         }
             

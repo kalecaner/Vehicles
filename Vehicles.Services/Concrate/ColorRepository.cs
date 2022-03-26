@@ -18,7 +18,9 @@ namespace Vehicles.Services.Concrate
 
         public int GetColorIdByColor(string color)
         {
-            return DbContext.Colors.Where(a => a.ColorType == color).Select(a => a.Id).SingleOrDefault();
+            int Result=0;
+            Result= DbContext.Colors.Where(a => a.ColorType.ToLower().Trim() == color).Select(a => a.Id).SingleOrDefault();
+            return Result;
         }
     }
 }

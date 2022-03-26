@@ -98,18 +98,19 @@ namespace Vehicles.Services.Concrate
 
         private Car checkNumberPlateForCar(string numberPlate)
         {
-           return DbContext.Cars.Where(c => c.NumberPlate == numberPlate).FirstOrDefault();
+           return DbContext.Cars.Where(c => c.NumberPlate.ToLower().Trim() == numberPlate).FirstOrDefault();
         }
 
         public bool CountCarByBrand(string brand)
         {
-           return DbContext.Cars.Any(c => c.Brand == brand);
+           return DbContext.Cars.Any(c => c.Brand.ToLower().Trim() == brand);
         }
 
         public int DeleteByBrand(string brand)
         {
-          int WillDeleteBrand=DbContext.Cars.Where(c=>c.Brand==brand).Select(c=>c.Id).SingleOrDefault();
+            Car WillDeleteBrand = DbContext.Cars.Where(c => c.Brand.ToLower().Trim() == brand).SingleOrDefault();
             DbContext.Remove(WillDeleteBrand);
+
             return  DbContext.SaveChanges();
         }
 
@@ -117,8 +118,16 @@ namespace Vehicles.Services.Concrate
         {
 
             int ColorId =ColorRepository.GetColorIdByColor(color);
-
+            if (ColorId > 0)
+            {
             return DbContext.Cars.Where(a => a.Color.Id == ColorId).Select(a => a.Brand).ToList();
+            }
+            else
+            {
+            return null;
+
+            }
+
 
 
 

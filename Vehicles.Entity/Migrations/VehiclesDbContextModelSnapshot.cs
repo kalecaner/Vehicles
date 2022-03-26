@@ -48,6 +48,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -86,6 +87,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WheelType")
@@ -128,6 +130,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WheelType")

@@ -10,7 +10,7 @@ using Vehicles.Services;
 namespace Vehicles.Entity.Migrations
 {
     [DbContext(typeof(VehiclesDbContext))]
-    [Migration("20220325185326_initial")]
+    [Migration("20220326073954_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -88,6 +89,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WheelType")
@@ -130,6 +132,7 @@ namespace Vehicles.Entity.Migrations
 
                     b.Property<string>("NumberPlate")
                         .IsRequired()
+                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WheelType")

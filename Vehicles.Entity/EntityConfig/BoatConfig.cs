@@ -20,11 +20,12 @@ namespace Vehicles.Entity.EntityConfig
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Brand).IsRequired();
             builder.Property(a => a.HeadlightType).IsRequired();
-            builder.Property(a => a.NumberPlate).IsRequired();
+            builder.Property(a => a.NumberPlate).IsRequired().IsUnicode();
+            builder.Property(a => a.IsOn).IsRequired().HasConversion<int>();
            
 
 
-            //builder.HasData(new Car { Id = 1, Brand = "Oggusto", HeadlightType = "Led", IsOn = OnOff.off ,NumberPlate="ab12" });
+
 
         }
     }

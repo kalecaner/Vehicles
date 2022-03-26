@@ -24,36 +24,69 @@ namespace Vehicles.Controllers
         
         [HttpGet("GetCarsByColor")]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(List<string>))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetCarbyColor(string color)
         {
+            List<string> CarList = CarService.GetCarbyColor(color);
+                if(CarList == null)
+            {
+                return BadRequest($"{color} renkte araba bulunmamaktadır.");
+            }
+                else
+            {
+            return Ok(CarList);
 
-            return Ok(CarService.GetCarbyColor(color));
+            }
+
         }
 
         [HttpGet("GetBusByColor")]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(List<string>))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetBusbyColor(string color)
         {
+           
+            List<string> BusList = BusService.GetBusbyColor(color);
+            if (BusList == null)
+            {
+                return BadRequest($"{color} renkte araba bulunmamaktadır.");
+            }
+            else
+            {
+                return Ok(BusList);
 
-            return Ok(BusService.GetBusbyColor(color));
+            }
+            
         }
         [HttpGet("GetBoatByColor")]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(List<string>))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult GetBoatbyColor(string color)
         {
+            List<string> BoatList = BoatService.GetBoatbyColor(color);
 
-            return Ok(BoatService.GetBoatbyColor(color));
+            if (BoatList == null)
+            {
+                return BadRequest($"{color} renkte araba bulunmamaktadır.");
+            }
+            else
+            {
+                return Ok(BoatList);
+
+            }
+            return Ok();
         }
         [HttpPost("On/OffHeadLights")]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(string))]
          [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult OnOff ( string NumberPlate )
         {
-           if (CarService.TurnHeadLightofVehicle(NumberPlate) == "on")
+            string Result = CarService.TurnHeadLightofVehicle(NumberPlate);
+           if (Result == "on")
             {
                 return Ok($"{NumberPlate} plakalı aracınızın  farları açılmıştır.");
             }
-            else if (CarService.TurnHeadLightofVehicle(NumberPlate) == "off")
+            else if (Result == "off")
             {
                 return Ok($"{NumberPlate} plakalı aracınızın  farları kapatılmıştır.");
             }
@@ -67,9 +100,9 @@ namespace Vehicles.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(string))]
         public IActionResult RemoveCar(string Brand)
         {
-            if (CarService.IsThereCar(Brand))
+            if (CarService.IsThereCar(Brand.ToLower().Trim()))
             {
-                if (CarService.Delete(Brand) > 0)
+                if (CarService.Delete(Brand.ToLower().Trim()) > 0)
                 {
                     return Ok($"{Brand} marka araç başarı ile silinmiştir.");
                 }

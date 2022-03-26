@@ -13,21 +13,30 @@ namespace Vehicles.Services.Concrate
         VehiclesDbContext DbContext;
         IColorRepository ColorRepository;
 
-        public BoatRepository(VehiclesDbContext _VehiclesDb, IColorRepository ColorRepository)
+        public BoatRepository(VehiclesDbContext _VehiclesDb, IColorRepository _ColorRepository)
         {
             DbContext = _VehiclesDb;
-            ColorRepository = ColorRepository;
+            ColorRepository = _ColorRepository;
         }
 
         public Boat checkNumberPlateForCBus(string numberPlate)
         {
-            return DbContext.Boats.Where(c => c.NumberPlate == numberPlate).FirstOrDefault();
+            return DbContext.Boats.Where(c => c.NumberPlate.ToLower().Trim() == numberPlate).FirstOrDefault();
         }
 
         public List<string> GetBoatbyColor(string color)
         {
            int ColorId=ColorRepository.GetColorIdByColor(color);
+            if (ColorId > 0)
+            {
             return DbContext.Boats.Where(a => a.Color.Id==ColorId).Select(a=>a.Brand).ToList();
+
+            }
+            else
+            {
+                return null;
+            }
+
         }
     }
 }

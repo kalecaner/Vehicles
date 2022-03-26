@@ -19,17 +19,18 @@ namespace Vehicles.BLL.Concrate
 
         public int Delete(string brand)
         {
-             return carRepository.DeleteByBrand(brand);
+             return carRepository.DeleteByBrand(brand.ToLower().Trim());
         }
 
         public List<string> GetCarbyColor(string color)
         {
-            return carRepository.GetCarByColor(color);
+
+            return carRepository.GetCarByColor(color.ToLower().Trim());
         }
 
         public bool IsThereCar(string brand)
         {
-            if (carRepository.CountCarByBrand(brand))
+            if (carRepository.CountCarByBrand(brand.ToLower().Trim()))
             {
                 return true;
             }
@@ -45,7 +46,7 @@ namespace Vehicles.BLL.Concrate
         {
 
 
-            return carRepository.checkIsOnOrOff(numberPlate);
+            return carRepository.checkIsOnOrOff(numberPlate.ToLower().Trim());
         }
 
       
